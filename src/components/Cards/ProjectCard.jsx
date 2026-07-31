@@ -59,11 +59,11 @@ export default function ProjectCard({
         {/* Card Content */}
         <div className="p-6">
           <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-200">
-            {title}
+            {typeof title === "object" ? (title[language] || title.id || title.en) : title}
           </h3>
 
           <p className="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed line-clamp-3 font-medium">
-            {description}
+            {typeof description === "object" ? (description[language] || description.id || description.en) : description}
           </p>
 
           {/* Tech Badges */}

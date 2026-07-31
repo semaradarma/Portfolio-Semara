@@ -188,7 +188,7 @@ export default function Projects() {
                       <h4 className={`text-xs sm:text-sm font-extrabold truncate mt-1 ${
                         isActive ? "text-purple-900 dark:text-white" : "text-slate-800 dark:text-slate-200"
                       }`}>
-                        {proj.title}
+                        {typeof proj.title === "object" ? (proj.title[language] || proj.title.id || proj.title.en) : proj.title}
                       </h4>
                     </div>
 
@@ -216,7 +216,7 @@ export default function Projects() {
                     <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 dark:border-white/10 shadow-lg flex items-center justify-center group mb-6">
                       <img
                         src={getAssetUrl(activeProject.image)}
-                        alt={activeProject.title}
+                        alt={typeof activeProject.title === "object" ? (activeProject.title[language] || activeProject.title.id) : activeProject.title}
                         className={`w-full h-full group-hover:scale-105 transition-transform duration-700 ${
                           activeProject.category === "android"
                             ? "object-contain py-4 bg-slate-950"
@@ -235,11 +235,11 @@ export default function Projects() {
 
                     {/* Active Title & Detailed Description */}
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-                      {activeProject.title}
+                      {typeof activeProject.title === "object" ? (activeProject.title[language] || activeProject.title.id || activeProject.title.en) : activeProject.title}
                     </h3>
 
                     <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-medium mt-3">
-                      {activeProject.description}
+                      {typeof activeProject.description === "object" ? (activeProject.description[language] || activeProject.description.id || activeProject.description.en) : activeProject.description}
                     </p>
 
                     {/* Tech Badges */}

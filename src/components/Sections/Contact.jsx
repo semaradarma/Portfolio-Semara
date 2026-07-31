@@ -42,7 +42,7 @@ export default function Contact() {
               <input
                 type="text"
                 required
-                placeholder="Ex: Alex Rivers"
+                placeholder={t.namePlaceholder || "Contoh: Budi Santoso"}
                 className="w-full px-4.5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#110826] border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-700 transition-all font-semibold text-sm"
               />
             </div>
@@ -54,7 +54,7 @@ export default function Contact() {
               <input
                 type="email"
                 required
-                placeholder="alex@example.com"
+                placeholder={t.emailPlaceholder || "budi@contoh.com"}
                 className="w-full px-4.5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#110826] border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-700 transition-all font-semibold text-sm"
               />
             </div>
@@ -66,7 +66,7 @@ export default function Contact() {
               <textarea
                 required
                 rows="4"
-                placeholder="Mari diskusikan proyek website atau aplikasi Android Anda..."
+                placeholder={t.messagePlaceholder || "Mari diskusikan ide proyek Web, aplikasi Android, atau Data Science Anda..."}
                 className="w-full px-4.5 py-3.5 rounded-xl bg-slate-50 dark:bg-[#110826] border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-700 transition-all font-semibold text-sm"
               />
             </div>
