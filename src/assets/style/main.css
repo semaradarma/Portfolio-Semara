@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* 🌿 Mether Willz Portfolio - Natural Clean Contrast & Purple Accent Theme */
+
+:root {
+  --color-primary: #6d28d9;
+  --color-primary-hover: #5b21b6;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ☀️ LIGHT MODE: Crisp Slate-50 background, Natural Dark Slate (#0f172a) text */
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 🌙 DARK MODE: Deep Velvet Midnight (#0b0717) background, Solid White (#ffffff) text */
+.dark body {
+  background-color: #0b0717;
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    #1b0e36 0%,
+    #110924 45%,
+    #0b0717 100%
+  );
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+/* 🧊 HIGH CONTRAST CARDS */
+.card-glass {
+  background: #ffffff;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dark .card-glass {
+  background: #150d29;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.card-glass:hover {
+  transform: translateY(-5px);
+  border-color: #c084fc;
+  box-shadow: 0 15px 35px -5px rgba(109, 40, 217, 0.15);
+}
+
+.dark .card-glass:hover {
+  border-color: #a855f7;
+  box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+}
+
+.section-glass {
+  position: relative;
+}
+
+/* ⚡ NATURAL ACCENT BUTTONS (NO GRADIENT TEXT) */
+.btn-cyber {
+  background-color: #6d28d9;
+  color: #ffffff !important;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.35);
+}
+
+.btn-cyber:hover {
+  background-color: #5b21b6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(109, 40, 217, 0.5);
+}
+
+/* 📜 CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6d28d9;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0b0717;
+}

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "flag-icons/css/flag-icons.min.css";
+@import "./assets/style/main.css";
+/* MIKALEA FONT — PATH BENAR BUAT VITE + @import */
+@font-face {
+  font-family: 'Mikalea';
+  src: url('/src/assets/fonts/Mikalea.woff') format('woff'),
+       url('/src/assets/fonts/Mikalea.ttf') format('truetype'),
+       url('/src/assets/fonts/Mikalea.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* KELAS FONT MIKALEA */
+.font-mikalea {
+  font-family: 'Mikalea', 'Inter', system-ui, sans-serif;
+}

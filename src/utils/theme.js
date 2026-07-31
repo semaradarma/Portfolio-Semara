@@ -1,0 +1,16 @@
+export const toggleDarkMode = () => {
+  const html = document.documentElement;
+  html.classList.toggle("dark");
+  const isDark = html.classList.contains("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+};
+
+export const initTheme = () => {
+  const storedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+};
