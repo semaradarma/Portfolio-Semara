@@ -1,11 +1,10 @@
 import { getAssetUrl } from "@/utils/assets";
 import useLanguage from "@/hooks/useLanguage";
 
-export default function TestimonialCard({ name, role, company, message, avatar, rating }) {
+export default function TestimonialCard({ name, message, avatar, rating }) {
   const { language } = useLanguage();
 
   const localizedMessage = typeof message === "object" ? (message[language] || message.id || message.en) : message;
-  const localizedRole = typeof role === "object" ? (role[language] || role.id || role.en) : role;
 
   return (
     <div className="card-glass p-8 md:p-10 rounded-3xl flex flex-col justify-between h-full text-center relative overflow-hidden group border border-slate-200 dark:border-white/10 shadow-sm">
@@ -38,9 +37,6 @@ export default function TestimonialCard({ name, role, company, message, avatar, 
         <h4 className="font-extrabold text-slate-900 dark:text-white text-base tracking-wide">
           {name}
         </h4>
-        <p className="text-xs text-purple-800 dark:text-purple-300 font-bold mt-0.5">
-          {localizedRole} {company ? `• ${company}` : ""}
-        </p>
       </div>
     </div>
   );
