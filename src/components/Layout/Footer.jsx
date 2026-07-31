@@ -72,19 +72,19 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-slate-700 dark:text-slate-400 font-semibold">
               <li className="flex items-center gap-2">
                 <i className="bi bi-android2 text-purple-700 dark:text-purple-400"></i>
-                <span>Android App Development</span>
+                <span>{t.specAndroid || "Pengembangan Aplikasi Android"}</span>
               </li>
               <li className="flex items-center gap-2">
                 <i className="bi bi-code-slash text-indigo-700 dark:text-indigo-400"></i>
-                <span>React & Vite Frontend</span>
+                <span>{t.specWeb || "Pengembangan Web Frontend"}</span>
               </li>
               <li className="flex items-center gap-2">
                 <i className="bi bi-palette-fill text-purple-700 dark:text-purple-400"></i>
-                <span>Clean Responsive UI</span>
+                <span>{t.specUI || "Desain UI Responsif & Bersih"}</span>
               </li>
               <li className="flex items-center gap-2">
                 <i className="bi bi-shield-check text-purple-700 dark:text-purple-400"></i>
-                <span>High Performance Apps</span>
+                <span>{t.specPerf || "Aplikasi Performa Tinggi"}</span>
               </li>
             </ul>
           </div>
