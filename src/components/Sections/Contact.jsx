@@ -94,7 +94,7 @@ export default function Contact() {
             <i className="bi bi-github"></i>
           </a>
           <a
-            href="https://linkedin.com/in/metherwillz"
+            href="https://www.linkedin.com/in/i-putu-semara-darma/"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => soundFx.playClickSound()}
