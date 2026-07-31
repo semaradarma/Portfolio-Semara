@@ -1,6 +1,6 @@
-// src/App.jsx (tetap sama — sudah muncul setiap refresh)
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { LanguageProvider } from "@/context/LanguageContext";
 import OpeningScreen from "@/components/UI/OpeningScreen";
 import Navbar from "@/components/Layout/Navbar";
 import Hero from "@/components/Sections/Hero";
@@ -17,7 +17,7 @@ export default function App() {
   const handleComplete = () => setShowOpening(false);
 
   return (
-    <>
+    <LanguageProvider>
       <AnimatePresence mode="wait">
         {showOpening && <OpeningScreen onComplete={handleComplete} />}
       </AnimatePresence>
@@ -44,6 +44,6 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </LanguageProvider>
   );
 }
