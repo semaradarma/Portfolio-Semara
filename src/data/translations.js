@@ -21,6 +21,8 @@ export const translations = {
       statSpecializationSub: "Spesialisasi Multi-Platform",
       statSatisfaction: "100% Kepuasan",
       statSatisfactionSub: "Kualitas Kode & Performa",
+      badgeAndroidMobile: "Android Mobile",
+      badgeWebDev: "Pengembang Web",
     },
     about: {
       title: "Tentang Saya",
@@ -55,6 +57,9 @@ export const translations = {
       accessApp: "Akses Aplikasi Android",
       codeButton: "Kode Repositori",
       codeButtonShort: "Kode",
+      badgeAndroidApp: "Aplikasi Android",
+      badgeWebSystem: "Sistem Web",
+      badgeWebsite: "Situs Web",
     },
     testimonials: {
       title: "Testimoni Klien & Rekan Kerja",
@@ -110,6 +115,8 @@ export const translations = {
       statSpecializationSub: "Multi-Platform Specialist",
       statSatisfaction: "100% Satisfaction",
       statSatisfactionSub: "Code Quality & Performance",
+      badgeAndroidMobile: "Android Mobile",
+      badgeWebDev: "Web Dev",
     },
     about: {
       title: "About Me",
@@ -144,6 +151,9 @@ export const translations = {
       accessApp: "Access Android App",
       codeButton: "Repository Code",
       codeButtonShort: "Code",
+      badgeAndroidApp: "Android App",
+      badgeWebSystem: "Web System",
+      badgeWebsite: "Website",
     },
     testimonials: {
       title: "Client & Peer Testimonials",
@@ -199,6 +209,8 @@ export const translations = {
       statSpecializationSub: "マルチプラットフォーム専門",
       statSatisfaction: "100% 顧客満足度",
       statSatisfactionSub: "コード品質と高速パフォーマンス",
+      badgeAndroidMobile: "Android モバイル",
+      badgeWebDev: "Web 開発",
     },
     about: {
       title: "私について",
@@ -233,6 +245,9 @@ export const translations = {
       accessApp: "Androidアプリにアクセス",
       codeButton: "ソースコードリポジトリ",
       codeButtonShort: "コード",
+      badgeAndroidApp: "Android アプリ",
+      badgeWebSystem: "Web システム",
+      badgeWebsite: "Web サイト",
     },
     testimonials: {
       title: "お客様・パートナーの声",
@@ -287,6 +302,8 @@ export const translations = {
       statSpecializationSub: "Multi-Plattform Spezialist",
       statSatisfaction: "100% Zufriedenheit",
       statSatisfactionSub: "Code-Qualität & Leistung",
+      badgeAndroidMobile: "Android Mobil",
+      badgeWebDev: "Web-Entwicklung",
     },
     about: {
       title: "Über mich",
@@ -321,6 +338,9 @@ export const translations = {
       accessApp: "Android-App öffnen",
       codeButton: "Quellcode-Repository",
       codeButtonShort: "Code",
+      badgeAndroidApp: "Android-App",
+      badgeWebSystem: "Websystem",
+      badgeWebsite: "Webseite",
     },
     testimonials: {
       title: "Kundenfeedback",
@@ -375,6 +395,8 @@ export const translations = {
       statSpecializationSub: "Spécialiste Multi-Plateforme",
       statSatisfaction: "100% Satisfaction",
       statSatisfactionSub: "Qualité du Code & Performance",
+      badgeAndroidMobile: "Mobile Android",
+      badgeWebDev: "Développement Web",
     },
     about: {
       title: "À propos de moi",
@@ -409,6 +431,9 @@ export const translations = {
       accessApp: "Accéder à l'App Android",
       codeButton: "Dépôt Code Source",
       codeButtonShort: "Code",
+      badgeAndroidApp: "Application Android",
+      badgeWebSystem: "Système Web",
+      badgeWebsite: "Site Web",
     },
     testimonials: {
       title: "Témoignages",
@@ -463,6 +488,8 @@ export const translations = {
       statSpecializationSub: "Especialista Multiplataforma",
       statSatisfaction: "100% Satisfacción",
       statSatisfactionSub: "Calidad de Código y Rendimiento",
+      badgeAndroidMobile: "Móvil Android",
+      badgeWebDev: "Desarrollo Web",
     },
     about: {
       title: "Sobre mí",
@@ -497,6 +524,9 @@ export const translations = {
       accessApp: "Acceder a la App Android",
       codeButton: "Código de Repositorio",
       codeButtonShort: "Código",
+      badgeAndroidApp: "Aplicación Android",
+      badgeWebSystem: "Sistema Web",
+      badgeWebsite: "Sitio Web",
     },
     testimonials: {
       title: "Testimonios",
@@ -550,6 +580,8 @@ export const translations = {
       statSpecializationSub: "多平台开发专家",
       statSatisfaction: "100% 满意度",
       statSatisfactionSub: "高质量代码与卓越性能",
+      badgeAndroidMobile: "Android 移动端",
+      badgeWebDev: "Web 开发者",
     },
     about: {
       title: "关于我",
@@ -584,6 +616,9 @@ export const translations = {
       accessApp: "访问 Android 应用",
       codeButton: "代码仓库",
       codeButtonShort: "源码",
+      badgeAndroidApp: "Android 应用",
+      badgeWebSystem: "Web 系统",
+      badgeWebsite: "网站",
     },
     testimonials: {
       title: "客户评价",

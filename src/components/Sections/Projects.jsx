@@ -183,7 +183,7 @@ export default function Projects() {
 
                     <div className="flex-1 min-w-0">
                       <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-purple-200/80 dark:bg-purple-900/60 text-purple-900 dark:text-purple-200">
-                        {proj.category === "android" ? "Android" : proj.badge}
+                        {proj.category === "android" ? (t.badgeAndroidApp || "Android App") : proj.badge}
                       </span>
                       <h4 className={`text-xs sm:text-sm font-extrabold truncate mt-1 ${
                         isActive ? "text-purple-900 dark:text-white" : "text-slate-800 dark:text-slate-200"
@@ -228,7 +228,7 @@ export default function Projects() {
                       <div className="absolute top-4 left-4 z-10">
                         <span className="text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider bg-purple-900/90 text-purple-100 border border-purple-400/50 shadow-md flex items-center gap-1.5">
                           <i className={activeProject.category === "android" ? "bi bi-phone-fill" : "bi bi-globe"}></i>
-                          {activeProject.category === "android" ? "Android App" : "Web System"}
+                          {activeProject.category === "android" ? (t.badgeAndroidApp || "Android App") : (t.badgeWebSystem || "Web System")}
                         </span>
                       </div>
                     </div>

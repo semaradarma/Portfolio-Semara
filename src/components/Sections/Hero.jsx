@@ -130,35 +130,31 @@ export default function Hero() {
               className="relative z-10 max-h-full object-contain filter drop-shadow-[0_10px_20px_rgba(15,23,42,0.25)] transition-transform duration-500 hover:scale-105"
             />
 
-            {/* Floating Tech Badge 1 (Android) */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -top-3 -left-2 sm:-left-6 z-20 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-[#180e2d] border border-slate-200 dark:border-purple-500/40 shadow-xl flex items-center gap-2.5"
-            >
-              <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-900/60 flex items-center justify-center text-purple-700 dark:text-purple-300 text-xl">
+            {/* Floating Tech Badge 1: Android Mobile */}
+            <div className="absolute top-4 left-4 bg-white/90 dark:bg-purple-950/90 backdrop-blur-md border border-slate-200 dark:border-purple-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float z-10">
+              <div className="w-10 h-10 rounded-xl bg-purple-700 text-white flex items-center justify-center text-xl font-bold shadow-md">
                 <i className="bi bi-android2"></i>
               </div>
               <div>
-                <p className="text-xs font-extrabold text-slate-900 dark:text-white">Android Mobile</p>
-                <p className="text-[10px] text-slate-600 dark:text-slate-400 font-bold">React Native & Python</p>
+                <p className="text-xs font-black text-slate-900 dark:text-white leading-tight">
+                  {t.badgeAndroidMobile || "Android Mobile"}
+                </p>
+                <p className="text-[10px] text-purple-800 dark:text-purple-300 font-bold">React Native & Python</p>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Floating Tech Badge 2 (Web Dev) */}
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-3 -right-2 sm:-right-6 z-20 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-[#180e2d] border border-slate-200 dark:border-purple-500/40 shadow-xl flex items-center gap-2.5"
-            >
-              <div className="w-9 h-9 rounded-xl bg-indigo-100 dark:bg-indigo-900/60 flex items-center justify-center text-indigo-700 dark:text-indigo-300 text-xl">
+            {/* Floating Tech Badge 2: Web Dev */}
+            <div className="absolute bottom-6 right-4 bg-white/90 dark:bg-indigo-950/90 backdrop-blur-md border border-slate-200 dark:border-indigo-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float-delayed z-10">
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl font-bold shadow-md">
                 <i className="bi bi-code-slash"></i>
               </div>
               <div>
-                <p className="text-xs font-extrabold text-slate-900 dark:text-white">Web Dev</p>
-                <p className="text-[10px] text-slate-600 dark:text-slate-400 font-bold">React & Vite</p>
+                <p className="text-xs font-black text-slate-900 dark:text-white leading-tight">
+                  {t.badgeWebDev || "Web Dev"}
+                </p>
+                <p className="text-[10px] text-indigo-800 dark:text-indigo-300 font-bold">React & Vite</p>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 

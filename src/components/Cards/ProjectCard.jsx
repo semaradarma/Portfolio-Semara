@@ -51,7 +51,7 @@ export default function ProjectCard({
               }`}
             >
               <i className={category === "android" ? "bi bi-phone-fill" : "bi bi-globe"}></i>
-              {category === "android" ? "Android App" : "Website"}
+              {category === "android" ? (t.badgeAndroidApp || "Android App") : (t.badgeWebsite || "Website")}
             </span>
           </div>
         </div>
