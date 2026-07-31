@@ -26,9 +26,9 @@ export default function App() {
         {!showOpening && (
           <motion.div
             key="main"
-            initial={{ y: window.innerHeight }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1.6, ease: [0.19, 1, 0.22, 1] }}
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
             className="relative min-h-screen"
           >
             <Navbar />
