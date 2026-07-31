@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "bootstrap-icons/font/bootstrap-icons.css";
-@import "flag-icons/css/flag-icons.min.css";
 @import "./assets/style/main.css";
 /* MIKALEA FONT — PATH BENAR BUAT VITE + @import */
 @font-face {
