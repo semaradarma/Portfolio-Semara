@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { LanguageProvider } from "@/context/LanguageContext";
 import OpeningScreen from "@/components/UI/OpeningScreen";
 import Navbar from "@/components/Layout/Navbar";
@@ -18,32 +18,22 @@ export default function App() {
 
   return (
     <LanguageProvider>
-      <AnimatePresence mode="wait">
-        {showOpening && <OpeningScreen onComplete={handleComplete} />}
-      </AnimatePresence>
+      <div className="relative min-h-screen">
+        <AnimatePresence>
+          {showOpening && <OpeningScreen onComplete={handleComplete} />}
+        </AnimatePresence>
 
-      <AnimatePresence mode="wait">
-        {!showOpening && (
-          <motion.div
-            key="main"
-            initial={{ opacity: 0, scale: 0.99 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="relative min-h-screen"
-          >
-            <Navbar />
-            <main>
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Testimonials />
-              <Contact />
-            </main>
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </LanguageProvider>
   );
 }

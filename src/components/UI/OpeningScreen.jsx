@@ -52,12 +52,12 @@ const OpeningScreen = ({ onComplete }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0b0717] text-white overflow-hidden select-none"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0b0717] text-white overflow-hidden select-none pointer-events-auto"
       initial={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        scale: 0.97,
-        transition: { duration: 0.4, ease: "easeOut" },
+        scale: 1.02,
+        transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
       }}
     >
       {/* Background Animated Gradient Aura */}
