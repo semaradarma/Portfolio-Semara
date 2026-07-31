@@ -5,6 +5,8 @@ import { translations } from "@/data/translations";
 import { soundFx } from "@/utils/audio";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { getAssetUrl } from "@/utils/assets";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
@@ -54,7 +56,7 @@ export default function Navbar() {
           className="flex items-center gap-3 group"
         >
           <img
-            src="/logo_profile.svg"
+            src={getAssetUrl("/logo_profile.svg")}
             alt="Logo"
             className="w-9 h-9 object-contain group-hover:scale-105 transition-transform duration-300"
           />

@@ -1,3 +1,5 @@
+import { getAssetUrl } from "@/utils/assets";
+
 export default function TestimonialCard({ name, role, company, message, avatar, rating }) {
   return (
     <div className="card-glass p-8 md:p-10 rounded-3xl flex flex-col justify-between h-full text-center relative overflow-hidden group border border-slate-200 dark:border-white/10 shadow-sm">
@@ -23,7 +25,7 @@ export default function TestimonialCard({ name, role, company, message, avatar, 
       {/* Author Info */}
       <div className="flex flex-col items-center mt-4">
         <img
-          src={avatar}
+          src={getAssetUrl(avatar)}
           alt={name}
           className="w-16 h-16 rounded-full mb-3 border-2 border-purple-700 shadow-md object-cover group-hover:scale-105 transition-transform duration-300"
         />

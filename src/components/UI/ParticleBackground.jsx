@@ -6,41 +6,46 @@ export default function ParticleBackground() {
   const [engineLoaded, setEngineLoaded] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
     const init = async () => {
-      const { initParticlesEngine } = await import("@tsparticles/react");
-      await initParticlesEngine(loadSlim);
-      setEngineLoaded(true);
+      try {
+        const { initParticlesEngine } = await import("@tsparticles/react");
+        await initParticlesEngine(loadSlim);
+        if (isMounted) setEngineLoaded(true);
+      } catch (e) {
+        console.warn("Particles init notice:", e);
+      }
     };
     init();
+    return () => { isMounted = false; };
   }, []);
 
   const options = useMemo(
     () => ({
       background: { color: { value: "transparent" } },
-      fpsLimit: 60,
+      fpsLimit: 30,
       particles: {
-        color: { value: ["#7c3aed", "#14b8a6"] },
+        color: { value: ["#7c3aed", "#6366f1"] },
         links: {
           color: "#7c3aed",
-          distance: 150,
+          distance: 110,
           enable: true,
-          opacity: 0.3,
+          opacity: 0.25,
           width: 1,
         },
-        move: { enable: true, speed: 1.2, outModes: { default: "bounce" } },
-        number: { value: 50 },
-        opacity: { value: 0.4 },
+        move: { enable: true, speed: 0.8, outModes: { default: "bounce" } },
+        number: { value: 22 },
+        opacity: { value: 0.35 },
         shape: { type: "circle" },
-        size: { value: { min: 1, max: 3 } },
+        size: { value: { min: 1, max: 2.5 } },
       },
       interactivity: {
         events: {
-          onHover: { enable: true, mode: "repulse" },
+          onHover: { enable: false },
           resize: true,
         },
-        modes: { repulse: { distance: 100, duration: 0.4 } },
       },
-      detectRetina: true,
+      detectRetina: false,
     }),
     []
   );
@@ -51,7 +56,7 @@ export default function ParticleBackground() {
     <Particles
       id="tsparticles"
       options={options}
-      className="absolute inset-0 -z-10"
+      className="absolute inset-0 -z-10 pointer-events-none"
     />
   );
 }

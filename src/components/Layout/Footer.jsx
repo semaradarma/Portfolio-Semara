@@ -1,5 +1,6 @@
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/data/translations";
+import { getAssetUrl } from "@/utils/assets";
 
 export default function Footer() {
   const { language } = useLanguage();
@@ -16,7 +17,7 @@ export default function Footer() {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/logo_profile.svg"
+                src={getAssetUrl("/logo_profile.svg")}
                 alt="Logo"
                 className="w-10 h-10 object-contain"
               />

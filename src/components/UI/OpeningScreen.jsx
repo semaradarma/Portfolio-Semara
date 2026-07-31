@@ -4,6 +4,8 @@ import { translations } from "@/data/translations";
 import useLanguage from "@/hooks/useLanguage";
 import { soundFx } from "@/utils/audio";
 
+import { getAssetUrl } from "@/utils/assets";
+
 const OpeningScreen = ({ onComplete }) => {
   const { language } = useLanguage();
   const langData = translations[language] || translations.id;
@@ -86,7 +88,7 @@ const OpeningScreen = ({ onComplete }) => {
           onClick={() => soundFx.playStartupSound()}
         >
           <img
-            src="/logo_profile.svg"
+            src={getAssetUrl("/logo_profile.svg")}
             alt="Mether Willz Logo"
             className="relative w-44 h-44 md:w-56 md:h-56 object-contain filter drop-shadow-[0_0_25px_rgba(109,40,217,0.7)] transition-transform duration-500 group-hover:scale-105"
           />

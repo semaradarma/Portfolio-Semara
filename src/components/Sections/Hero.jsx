@@ -5,6 +5,8 @@ import { translations } from "@/data/translations";
 import { soundFx } from "@/utils/audio";
 import { motion } from "framer-motion";
 
+import { getAssetUrl } from "@/utils/assets";
+
 export default function Hero() {
   const { language } = useLanguage();
   const langData = translations[language] || translations.id;
@@ -123,7 +125,7 @@ export default function Hero() {
 
             {/* Profile Cutout Image */}
             <img
-              src="/images/profile/profile-pose.png"
+              src={getAssetUrl("/images/profile/profile-pose.png")}
               alt="Mether Willz Pose"
               className="relative z-10 max-h-full object-contain filter drop-shadow-[0_10px_20px_rgba(15,23,42,0.25)] transition-transform duration-500 hover:scale-105"
             />

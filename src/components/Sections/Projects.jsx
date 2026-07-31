@@ -5,6 +5,7 @@ import MotionWrapper from "@/components/UI/MotionWrapper";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/data/translations";
 import { soundFx } from "@/utils/audio";
+import { getAssetUrl } from "@/utils/assets";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Projects() {
@@ -174,7 +175,7 @@ export default function Projects() {
                   >
                     <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-900 flex-shrink-0 relative border border-slate-300 dark:border-white/10">
                       <img
-                        src={proj.image}
+                        src={getAssetUrl(proj.image)}
                         alt={proj.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
@@ -214,7 +215,7 @@ export default function Projects() {
                     {/* Big High-Res Image Preview */}
                     <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 dark:border-white/10 shadow-lg flex items-center justify-center group mb-6">
                       <img
-                        src={activeProject.image}
+                        src={getAssetUrl(activeProject.image)}
                         alt={activeProject.title}
                         className={`w-full h-full group-hover:scale-105 transition-transform duration-700 ${
                           activeProject.category === "android"

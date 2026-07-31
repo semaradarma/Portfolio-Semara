@@ -3,6 +3,7 @@ import MotionWrapper from "@/components/UI/MotionWrapper";
 import useLanguage from "@/hooks/useLanguage";
 import { translations } from "@/data/translations";
 import { soundFx } from "@/utils/audio";
+import { getAssetUrl } from "@/utils/assets";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function About() {
@@ -13,25 +14,25 @@ export default function About() {
   const photos = [
     {
       id: "creative",
-      src: "/images/profile/profile-creative.jpg",
+      src: getAssetUrl("/images/profile/profile-creative.jpg"),
       title: "Creative Pose",
       subtitle: "Lake & Mountain View"
     },
     {
       id: "cool",
-      src: "/images/profile/profile-cool.jpg",
+      src: getAssetUrl("/images/profile/profile-cool.jpg"),
       title: "Cyber Stance",
       subtitle: "Developer Profile"
     },
     {
       id: "outdoor1",
-      src: "/images/profile/profile-outdoor1.jpg",
+      src: getAssetUrl("/images/profile/profile-outdoor1.jpg"),
       title: "Mountain View 1",
       subtitle: "Outdoor Landscape"
     },
     {
       id: "outdoor2",
-      src: "/images/profile/profile-outdoor2.jpg",
+      src: getAssetUrl("/images/profile/profile-outdoor2.jpg"),
       title: "Mountain View 2",
       subtitle: "Outdoor Moment"
     }

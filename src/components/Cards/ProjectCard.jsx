@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { soundFx } from "@/utils/audio";
+import { getAssetUrl } from "@/utils/assets";
 
 export default function ProjectCard({
   title,
@@ -25,7 +26,7 @@ export default function ProjectCard({
         {/* Project Image & Badge Overlay */}
         <div className="relative h-60 overflow-hidden bg-slate-900 flex items-center justify-center">
           <img
-            src={image}
+            src={getAssetUrl(image)}
             alt={title}
             className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${
               category === "android" ? "object-contain py-2 bg-slate-950" : "object-cover object-top"
