@@ -61,7 +61,7 @@ export default function Navbar() {
             className="w-9 h-9 object-contain group-hover:scale-105 transition-transform duration-300"
           />
           <span className="font-mikalea text-lg md:text-xl font-bold text-slate-900 dark:text-white">
-            Mether Willz
+            Semara Darma
           </span>
         </a>
 

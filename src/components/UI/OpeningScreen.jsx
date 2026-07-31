@@ -88,7 +88,7 @@ const OpeningScreen = ({ onComplete }) => {
         >
           <img
             src={getAssetUrl("/logo_profile.svg")}
-            alt="Mether Willz Logo"
+            alt="Semara Darma Logo"
             className="relative w-44 h-44 md:w-56 md:h-56 object-contain filter drop-shadow-[0_0_25px_rgba(109,40,217,0.7)] transition-transform duration-500 group-hover:scale-105"
           />
         </motion.div>

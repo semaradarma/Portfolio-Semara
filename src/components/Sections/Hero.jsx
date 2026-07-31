@@ -126,7 +126,7 @@ export default function Hero() {
             {/* Profile Cutout Image */}
             <img
               src={getAssetUrl("/images/profile/profile-pose.png")}
-              alt="Mether Willz Pose"
+              alt="Semara Darma Pose"
               className="relative z-10 max-h-full object-contain filter drop-shadow-[0_10px_20px_rgba(15,23,42,0.25)] transition-transform duration-500 hover:scale-105"
             />
 

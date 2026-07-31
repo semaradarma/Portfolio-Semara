@@ -121,7 +121,7 @@ export default function About() {
           <div className="lg:col-span-7 text-center lg:text-left">
             <MotionWrapper direction="left" delay={0.2}>
               <h3 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
-                {t.greetingBio || "Hi, Saya"} <span className="text-purple-800 dark:text-purple-300">Mether Willz</span>
+                {t.greetingBio || "Halo, Saya"} <span className="text-purple-800 dark:text-purple-300">Semara Darma</span>
               </h3>
 
               <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm md:text-base font-medium">

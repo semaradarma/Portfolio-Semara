@@ -9,7 +9,7 @@ export const translations = {
     },
     hero: {
       greeting: "Halo Dunia! 👋 Saya",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Pengembang Web, Android & Data Science",
       description:
         "Membangun Sistem Informasi Web, Sistem Pendukung Keputusan (SPK), Aplikasi Android, dan Analisis Data Science dengan performa tinggi dan estetika bersih.",
@@ -28,7 +28,7 @@ export const translations = {
       title: "Tentang Saya",
       subtitle: "Pengembang Berdedikasi untuk Platform Web, Android & Data Science",
       greetingBio: "Halo, Saya",
-      bio: "Saya Semara (Mether Willz), seorang Pengembang Web, Aplikasi Android & Data Science yang berdedikasi menciptakan solusi digital terdepan. Selama perjalanan saya, saya telah berhasil mengembangkan 8 proyek sistem informasi web, sistem pendukung keputusan (SPK), aplikasi Android, serta analisis data science.",
+      bio: "Saya I Putu Semara Darma (Semara), seorang Pengembang Web, Aplikasi Android & Data Science yang berdedikasi menciptakan solusi digital terdepan. Selama perjalanan saya, saya telah berhasil mengembangkan 8 proyek sistem informasi web, sistem pendukung keputusan (SPK), aplikasi Android, serta analisis data science.",
       statProjects: "8 Proyek Utama",
       statProjectsSub: "Web, Mobile & Data Science",
       statExperience: "Multi-Platform",
@@ -90,7 +90,7 @@ export const translations = {
       specPerf: "Aplikasi Performa Tinggi",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "PORTOFOLIO WEB, ANDROID & DATA SCIENCE",
       loadingText: "Memuat Sistem Portofolio...",
       enterButton: "MASUK PORTOFOLIO",
@@ -107,7 +107,7 @@ export const translations = {
     },
     hero: {
       greeting: "Hello World! 👋 I am",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Web, Android & Data Science Developer",
       description:
         "Building Web Information Systems, Decision Support Systems (DSS), Android Apps, and Data Science Analytics with high performance and clean aesthetics.",
@@ -126,7 +126,7 @@ export const translations = {
       title: "About Me",
       subtitle: "Passionate Developer for Web, Android & Data Science",
       greetingBio: "Hi, I am",
-      bio: "Hello! I am Semara (Mether Willz), a Web, Android App & Data Science Developer dedicated to crafting high-quality digital solutions. I have built 8 complete projects spanning Web Systems, DSS, Android Mobile Apps, and Data Analytics.",
+      bio: "Hello! I am I Putu Semara Darma (Semara), a Web, Android App & Data Science Developer dedicated to crafting high-quality digital solutions. I have built 8 complete projects spanning Web Systems, DSS, Android Mobile Apps, and Data Analytics.",
       statProjects: "8 Major Projects",
       statProjectsSub: "Web, Mobile & Data Science",
       statExperience: "Multi-Platform",
@@ -188,7 +188,7 @@ export const translations = {
       specPerf: "High Performance Apps",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "WEB, ANDROID & DATA SCIENCE PORTFOLIO",
       loadingText: "Initializing Portfolio System...",
       enterButton: "ENTER PORTFOLIO",
@@ -205,7 +205,7 @@ export const translations = {
     },
     hero: {
       greeting: "こんにちは！ 👋 私は",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Web, Android & データサイエンス開発者",
       description:
         "高品質なWeb情報システム、意思決定支援システム(DSS)、Androidアプリ、およびデータサイエンス分析を構築しています。",
@@ -224,7 +224,7 @@ export const translations = {
       title: "私について",
       subtitle: "Web、Android、データサイエンスの専任エンジニア",
       greetingBio: "こんにちは、私は",
-      bio: "Semaraです。Web、Android、データサイエンス開発者として、高品質なデジタルソリューションを構築しています。Webシステム、意思決定支援システム、Androidアプリ、データ分析など8つの実績を完遂しました。",
+      bio: "I Putu Semara Darma (Semara)です。Web、Android、データサイエンス開発者として、高品質なデジタルソリューションを構築しています。",
       statProjects: "8 主な実績",
       statProjectsSub: "Web・モバイル・データサイエンス",
       statExperience: "マルチプラットフォーム",
@@ -285,7 +285,7 @@ export const translations = {
       specPerf: "高性能アプリケーション",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "WEB, ANDROID & DATA SCIENCE PORTFOLIO",
       loadingText: "ポートフォリオシステムを起動中...",
       enterButton: "ポートフォリオに入る",
@@ -302,7 +302,7 @@ export const translations = {
     },
     hero: {
       greeting: "Hallo Welt! 👋 Ich bin",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Web, Android & Data Science Entwickler",
       description:
         "Entwicklung moderner Web-Informationssysteme, Android-Apps und Datenanalysen.",
@@ -321,7 +321,7 @@ export const translations = {
       title: "Über mich",
       subtitle: "Leidenschaftlicher Entwickler für Web, Android & Data Science",
       greetingBio: "Hallo, ich bin",
-      bio: "Ich bin Semara, ein Web-, Android- und Data Science-Entwickler, der hochwertige digitale Lösungen entwickelt.",
+      bio: "Ich bin I Putu Semara Darma (Semara), ein Web-, Android- und Data Science-Entwickler, der hochwertige digitale Lösungen entwickelt.",
       statProjects: "8 Hauptprojekte",
       statProjectsSub: "Web, Mobile & Data",
       statExperience: "Multi-Plattform",
@@ -382,7 +382,7 @@ export const translations = {
       specPerf: "Hochleistungsanwendungen",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "WEB, ANDROID & DATA SCIENCE PORTFOLIO",
       loadingText: "System wird geladen...",
       enterButton: "PORTFOLIO ÖFFNEN",
@@ -399,7 +399,7 @@ export const translations = {
     },
     hero: {
       greeting: "Bonjour le monde! 👋 Je suis",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Développeur Web, Android & Data Science",
       description:
         "Création de systèmes d'information Web modernes, d'applications Android natives et d'analyse de données.",
@@ -418,7 +418,7 @@ export const translations = {
       title: "À propos de moi",
       subtitle: "Créateur passionné pour le Web, Android et la Data Science",
       greetingBio: "Salut, je suis",
-      bio: "Je suis Semara, développeur Web, Android & Data Science dédié à la création de solutions numériques d'excellence.",
+      bio: "Je suis I Putu Semara Darma (Semara), développeur Web, Android & Data Science dédié à la création de solutions numériques d'excellence.",
       statProjects: "8 Projets Clés",
       statProjectsSub: "Web, Mobile & Data",
       statExperience: "Multi-Plateforme",
@@ -479,7 +479,7 @@ export const translations = {
       specPerf: "Applications Haute Performance",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "PORTFOLIO DÉVELOPPEUR WEB, ANDROID & DATA SCIENCE",
       loadingText: "Chargement du système...",
       enterButton: "ENTRER DANS LE PORTFOLIO",
@@ -496,7 +496,7 @@ export const translations = {
     },
     hero: {
       greeting: "¡Hola Mundo! 👋 Soy",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Desarrollador Web, Android y Data Science",
       description:
         "Desarrollo de Sistemas de Información Web, Aplicaciones Android y Análisis de Datos.",
@@ -515,7 +515,7 @@ export const translations = {
       title: "Sobre mí",
       subtitle: "Creador dedicado al desarrollo Web, Android y Data Science",
       greetingBio: "Hola, soy",
-      bio: "Soy Semara, un desarrollador Web, Android y Data Science enfocado en crear soluciones digitales de alta calidad.",
+      bio: "Soy I Putu Semara Darma (Semara), un desarrollador Web, Android y Data Science enfocado en crear soluciones digitales de alta calidad.",
       statProjects: "8 Proyectos Principales",
       statProjectsSub: "Web, Mobile y Data",
       statExperience: "Multiplataforma",
@@ -576,7 +576,7 @@ export const translations = {
       specPerf: "Aplicaciones de Alto Rendimiento",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "PORTAFOLIO DE DESARROLLADOR WEB, ANDROID Y DATA SCIENCE",
       loadingText: "Cargando sistema...",
       enterButton: "ENTRAR AL PORTAFOLIO",
@@ -593,7 +593,7 @@ export const translations = {
     },
     hero: {
       greeting: "你好，世界！ 👋 我是",
-      name: "Mether Willz (Semara)",
+      name: "Semara Darma",
       role: "Web, Android & 数据科学开发者",
       description: "构建高性能 Web 信息系统、Android 应用与数据科学分析平台。",
       buttonProjects: "浏览 8 个项目",
@@ -611,7 +611,7 @@ export const translations = {
       title: "关于我",
       subtitle: "专注于 Web、Android 与数据科学领域的开发者",
       greetingBio: "你好，我是",
-      bio: "我是 Semara，一名专注于构建高质量 Web、Android 与数据科学解决方案的开发者。已成功独立研发 8 个大型项目。",
+      bio: "我是 I Putu Semara Darma (Semara)，一名专注于构建高质量 Web、Android 与数据科学解决方案的开发者。",
       statProjects: "8 个核心项目",
       statProjectsSub: "Web, Android & 数据应用",
       statExperience: "多平台开发",
@@ -633,7 +633,7 @@ export const translations = {
       subtitle: "展示 8 个精心打造的 Web 信息系统、Android 应用与数据科学项目",
       filterAll: "全部 (8)",
       filterWeb: "Web 系统 (5)",
-      filterAndroid: "Android & 数据 (3)",
+      filterAndroid: "Android & Data (3)",
       featuredShowcase: "精选展台",
       allProjectsTitle: "所有作品集项目 (8)",
       demoButton: "在线演示 / 访问 Web",
@@ -672,7 +672,7 @@ export const translations = {
       specPerf: "高性能应用程序",
     },
     opening: {
-      welcome: "METHER WILLZ (SEMARA)",
+      welcome: "I PUTU SEMARA DARMA",
       subtitle: "WEB, ANDROID & DATA SCIENCE 开发者作品集",
       loadingText: "系统加载中...",
       enterButton: "进入作品集",

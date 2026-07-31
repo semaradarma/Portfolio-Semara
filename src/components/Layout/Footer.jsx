@@ -22,7 +22,7 @@ export default function Footer() {
                 className="w-10 h-10 object-contain"
               />
               <span className="font-mikalea text-2xl font-bold text-slate-900 dark:text-white">
-                Mether Willz
+                Semara Darma
               </span>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed font-semibold">
@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-200 dark:border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-600 dark:text-slate-400 gap-4 font-semibold">
-          <p>© {currentYear} Mether Willz. {t.copyright}</p>
+          <p>© {currentYear} I Putu Semara Darma. {t.copyright}</p>
           <p className="font-mono text-purple-900 dark:text-purple-300">Web & Android Developer</p>
         </div>
       </div>
