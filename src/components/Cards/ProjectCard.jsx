@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { soundFx } from "@/utils/audio";
 import { getAssetUrl } from "@/utils/assets";
+import useLanguage from "@/hooks/useLanguage";
+import { translations } from "@/data/translations";
 
 export default function ProjectCard({
   title,
@@ -12,6 +14,10 @@ export default function ProjectCard({
   badge,
   category,
 }) {
+  const { language } = useLanguage();
+  const langData = translations[language] || translations.id;
+  const t = langData.projects;
+
   return (
     <motion.div
       layout
@@ -62,12 +68,12 @@ export default function ProjectCard({
 
           {/* Tech Badges */}
           <div className="flex flex-wrap gap-1.5 mt-5">
-            {tech.map((t, i) => (
+            {tech.map((tItem, i) => (
               <span
                 key={i}
                 className="text-[11px] font-bold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-purple-950/80 border border-slate-200 dark:border-purple-800/40 text-slate-800 dark:text-purple-200"
               >
-                {t}
+                {tItem}
               </span>
             ))}
           </div>
@@ -84,7 +90,7 @@ export default function ProjectCard({
           className="flex-1 text-center text-xs font-bold py-3 px-4 rounded-xl btn-cyber text-white shadow-sm hover:shadow-md transition flex items-center justify-center gap-1.5"
         >
           <i className={category === "android" ? "bi bi-download" : "bi bi-box-arrow-up-right"}></i>
-          <span>{category === "android" ? "Akses App" : "Live Demo"}</span>
+          <span>{category === "android" ? (t.accessApp || "Akses App") : (t.demoButton || "Live Demo")}</span>
         </a>
 
         <a
@@ -95,7 +101,7 @@ export default function ProjectCard({
           className="text-center text-xs font-bold py-3 px-4 rounded-xl border border-slate-300 dark:border-white/20 text-slate-800 dark:text-white bg-slate-50 dark:bg-white/5 hover:border-purple-700 transition flex items-center justify-center gap-1.5 shadow-sm"
         >
           <i className="bi bi-github"></i>
-          <span>Kode</span>
+          <span>{t.codeButtonShort || "Kode"}</span>
         </a>
       </div>
     </motion.div>

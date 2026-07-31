@@ -125,7 +125,7 @@ export default function Projects() {
               <span className="w-3 h-3 rounded-full bg-purple-600 animate-ping"></span>
               <h3 className="text-lg font-extrabold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
                 <i className="bi bi-stars text-purple-600 dark:text-purple-400"></i>
-                Featured Showcase ({activeIndex + 1}/{filteredProjects.length})
+                {t.featuredShowcase || "Featured Showcase"} ({activeIndex + 1}/{filteredProjects.length})
               </h3>
             </div>
 
@@ -265,7 +265,7 @@ export default function Projects() {
                       className="btn-cyber px-6 py-3.5 rounded-xl text-white font-extrabold text-sm shadow-md hover:shadow-xl transition flex items-center justify-center gap-2 flex-1 sm:flex-none"
                     >
                       <i className={activeProject.category === "android" ? "bi bi-download" : "bi bi-box-arrow-up-right"}></i>
-                      <span>{activeProject.category === "android" ? "Akses App Android" : "Live Demo / Akses Web"}</span>
+                      <span>{activeProject.category === "android" ? (t.accessApp || "Akses App Android") : (t.demoButton || "Live Demo / Akses Web")}</span>
                     </a>
 
                     <a
@@ -276,7 +276,7 @@ export default function Projects() {
                       className="px-6 py-3.5 rounded-xl border border-slate-300 dark:border-white/20 text-slate-900 dark:text-white bg-white dark:bg-white/5 hover:border-purple-700 font-extrabold text-sm transition flex items-center justify-center gap-2 shadow-sm flex-1 sm:flex-none"
                     >
                       <i className="bi bi-github"></i>
-                      <span>Repository Kode</span>
+                      <span>{t.codeButton || "Repository Kode"}</span>
                     </a>
                   </div>
                 </motion.div>
@@ -290,7 +290,7 @@ export default function Projects() {
         <div className="mt-16 text-left">
           <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mb-8 flex items-center gap-2">
             <i className="bi bi-grid-3x3-gap-fill text-purple-600 dark:text-purple-400"></i>
-            Semua Proyek Portofolio (8)
+            {t.allProjectsTitle || "Semua Proyek Portofolio (8)"}
           </h3>
 
           <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

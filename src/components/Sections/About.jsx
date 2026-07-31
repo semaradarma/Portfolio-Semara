@@ -121,7 +121,7 @@ export default function About() {
           <div className="lg:col-span-7 text-center lg:text-left">
             <MotionWrapper direction="left" delay={0.2}>
               <h3 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
-                Hi, Saya <span className="text-purple-800 dark:text-purple-300">Mether Willz</span>
+                {t.greetingBio || "Hi, Saya"} <span className="text-purple-800 dark:text-purple-300">Mether Willz</span>
               </h3>
 
               <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm md:text-base font-medium">
@@ -178,7 +178,7 @@ export default function About() {
                   className="btn-cyber px-7 py-3.5 rounded-xl text-white font-bold text-sm shadow-md hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   <i className="bi bi-rocket-takeoff-fill"></i>
-                  <span>Jelajahi 8 Proyek</span>
+                  <span>{t.buttonExplore || "Jelajahi 8 Proyek"}</span>
                 </a>
                 <a
                   href="#skills"
@@ -186,7 +186,7 @@ export default function About() {
                   className="px-7 py-3.5 rounded-xl border border-slate-300 dark:border-white/20 text-slate-900 dark:text-white font-bold text-sm bg-white dark:bg-white/5 hover:border-purple-700 transition-all flex items-center justify-center gap-2 shadow-sm"
                 >
                   <i className="bi bi-award-fill text-purple-700 dark:text-purple-300"></i>
-                  <span>Lihat Keahlian</span>
+                  <span>{t.buttonSkills || "Lihat Keahlian"}</span>
                 </a>
               </div>
             </MotionWrapper>

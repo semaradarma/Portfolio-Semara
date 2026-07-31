@@ -38,27 +38,27 @@ export default function Footer() {
             <ul className="space-y-2 text-sm font-semibold">
               <li>
                 <a href="#home" className="hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
-                  Beranda
+                  {langData.nav?.home || "Beranda"}
                 </a>
               </li>
               <li>
                 <a href="#about" className="hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
-                  Tentang
+                  {langData.nav?.about || "Tentang"}
                 </a>
               </li>
               <li>
                 <a href="#skills" className="hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
-                  Keahlian
+                  {langData.nav?.skills || "Keahlian"}
                 </a>
               </li>
               <li>
                 <a href="#projects" className="hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
-                  Proyek (8)
+                  {langData.nav?.projects || "Proyek"} (8)
                 </a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
-                  Kontak
+                  {langData.nav?.contact || "Kontak"}
                 </a>
               </li>
             </ul>
@@ -67,7 +67,7 @@ export default function Footer() {
           {/* Specialization */}
           <div>
             <h4 className="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
-              Spesialisasi
+              {t.specialization || "Spesialisasi Utama"}
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-700 dark:text-slate-400 font-semibold">
               <li className="flex items-center gap-2">

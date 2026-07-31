@@ -99,15 +99,15 @@ export default function Hero() {
           >
             <div>
               <p className="text-2xl sm:text-3xl font-black text-purple-800 dark:text-purple-300">8+</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 font-bold mt-0.5">Proyek Selesai</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-bold mt-0.5">{t.statCompletedProjects || "Proyek Selesai"}</p>
             </div>
             <div className="border-x border-slate-200 dark:border-white/10 px-2">
-              <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">Android & Web</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 font-bold mt-0.5">Spesialisasi</p>
+              <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">{t.statSpecialization || "Android & Web"}</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-bold mt-0.5">{t.statSpecializationSub || "Spesialisasi"}</p>
             </div>
             <div>
               <p className="text-2xl sm:text-3xl font-black text-purple-800 dark:text-purple-300">100%</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 font-bold mt-0.5">Kepuasan</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-bold mt-0.5">{t.statSatisfaction || "Kepuasan"}</p>
             </div>
           </motion.div>
         </div>

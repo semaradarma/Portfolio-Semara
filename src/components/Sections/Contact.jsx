@@ -11,7 +11,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     soundFx.playClickSound();
-    alert(language === "id" ? "Pesan Anda telah dikirim!" : "Your message has been sent!");
+    alert(t.successAlert || "Pesan Anda telah berhasil dikirim!");
   };
 
   return (

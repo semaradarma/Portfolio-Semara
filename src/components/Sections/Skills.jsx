@@ -41,7 +41,7 @@ export default function Skills() {
                   <i className="bi bi-android2"></i>
                 </div>
                 <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white">
-                  Android Mobile Development
+                  {t.catAndroid || "Android Mobile Development"}
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -60,7 +60,7 @@ export default function Skills() {
                   <i className="bi bi-code-slash"></i>
                 </div>
                 <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white">
-                  Web Development & Frontend
+                  {t.catWeb || "Web Development & Frontend"}
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -79,7 +79,7 @@ export default function Skills() {
                   <i className="bi bi-tools"></i>
                 </div>
                 <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white">
-                  Database, Cloud & Tools (PostgreSQL, MySQL & Deployment)
+                  {t.catTools || "Database, Cloud & Tools"}
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
