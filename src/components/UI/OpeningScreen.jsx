@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Flower2, Sparkles, KeyRound } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Flower2, Sparkles, KeyRound, Volume2, VolumeX } from "lucide-react";
+import { motion } from "framer-motion";
 import { soundFx } from "@/utils/audio";
 
 const ENTRANCE_EASING = "cubic-bezier(0.16, 1, 0.3, 1)";
@@ -14,6 +14,7 @@ export default function OpeningScreen({ onComplete }) {
   const [scrolled, setScrolled] = useState(false);
   const [isOpeningDoor, setIsOpeningDoor] = useState(false);
   const [portalFlash, setPortalFlash] = useState(false);
+  const [isMuted, setIsMuted] = useState(soundFx.muted);
 
   // Set original title & restore later
   useEffect(() => {
@@ -66,8 +67,19 @@ export default function OpeningScreen({ onComplete }) {
   }, [isOverlayOpen]);
 
   const toggleOverlay = () => {
+    soundFx.init();
     soundFx.playClickSound();
     setIsOverlayOpen((prev) => !prev);
+  };
+
+  const toggleSound = (e) => {
+    e.stopPropagation();
+    soundFx.init();
+    const muted = soundFx.toggleMute();
+    setIsMuted(muted);
+    if (!muted) {
+      soundFx.playClickSound();
+    }
   };
 
   // Trigger Door Opening Animation & Transition to Hero Station
@@ -75,19 +87,29 @@ export default function OpeningScreen({ onComplete }) {
     if (isOpeningDoor) return;
     setIsOpeningDoor(true);
     setIsOverlayOpen(false);
-    soundFx.playDoorOpenSound();
+
+    // Synchronous audio unlock and play
+    try {
+      soundFx.init();
+      if (soundFx.ctx && soundFx.ctx.state === "suspended") {
+        soundFx.ctx.resume();
+      }
+      soundFx.playDoorOpenSound();
+    } catch (err) {
+      console.warn("Audio unlock notice:", err);
+    }
 
     // Trigger radiant flash when camera reaches the threshold
     setTimeout(() => {
       setPortalFlash(true);
-    }, 1250);
+    }, 1200);
 
     // Call onComplete after full opening sequence
     setTimeout(() => {
       if (onComplete) {
         onComplete();
       }
-    }, 1750);
+    }, 1700);
   };
 
   const handleLinkClick = (e, target) => {
@@ -120,7 +142,7 @@ export default function OpeningScreen({ onComplete }) {
       initial={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+        transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
       }}
     >
       {/* NAVBAR (fixed) */}
@@ -177,7 +199,7 @@ export default function OpeningScreen({ onComplete }) {
 
           {/* Right — desktop only (hidden md:flex) */}
           <div
-            className="hidden md:flex items-center gap-4 transition-all duration-700"
+            className="hidden md:flex items-center gap-3.5 transition-all duration-700"
             style={{
               transitionTimingFunction: ENTRANCE_EASING,
               transitionDelay: navMounted ? "400ms" : "0ms",
@@ -185,19 +207,34 @@ export default function OpeningScreen({ onComplete }) {
               transform: navMounted ? "translateY(0)" : "translateY(-1rem)",
             }}
           >
+            {/* Audio Toggle */}
+            <button
+              onClick={toggleSound}
+              title={isMuted ? "Aktifkan Suara" : "Matikan Suara"}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 transition-all text-white/90 cursor-pointer"
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-slate-400" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-purple-300 animate-pulse" />
+              )}
+            </button>
+
+            {/* Quick Open Door Button */}
             <button
               onClick={handleOpenDoor}
-              className="text-xs uppercase tracking-wider font-semibold px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 transition-all text-white/90 flex items-center gap-1.5 cursor-pointer"
+              className="text-xs uppercase tracking-wider font-bold px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-purple-400/40 hover:border-purple-300 transition-all text-white flex items-center gap-2 cursor-pointer shadow-md hover:shadow-purple-500/25"
             >
               <KeyRound className="w-3.5 h-3.5 text-purple-300" />
               <span>Buka Pintu</span>
             </button>
+
             <Flower2 className="w-7 h-7 text-white/90" />
           </div>
 
-          {/* Right — mobile (md:hidden) Hamburger */}
+          {/* Right — mobile (md:hidden) Controls */}
           <div
-            className="md:hidden transition-all duration-700"
+            className="md:hidden flex items-center gap-2 transition-all duration-700"
             style={{
               transitionTimingFunction: ENTRANCE_EASING,
               transitionDelay: navMounted ? "200ms" : "0ms",
@@ -205,6 +242,19 @@ export default function OpeningScreen({ onComplete }) {
               transform: navMounted ? "translateY(0)" : "translateY(-1rem)",
             }}
           >
+            {/* Mobile Sound Toggle */}
+            <button
+              onClick={toggleSound}
+              className="p-1.5 rounded-full bg-white/10 border border-white/20 text-white/90 cursor-pointer"
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-slate-400" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-purple-300" />
+              )}
+            </button>
+
+            {/* Hamburger Button */}
             <button
               onClick={toggleOverlay}
               className="w-8 h-8 flex flex-col items-center justify-center gap-1.5 cursor-pointer z-50 relative"
@@ -276,7 +326,7 @@ export default function OpeningScreen({ onComplete }) {
               }}
             >
               <KeyRound className="w-4 h-4 text-purple-700" />
-              <span>Buka Pintu & Masuk</span>
+              <span>Buka Pintu & Masuk ke Hero Station</span>
             </button>
           </div>
         </div>
@@ -293,7 +343,7 @@ export default function OpeningScreen({ onComplete }) {
             transformOrigin: "50% 41%",
             opacity: heroMounted ? 1 : 0,
             transform: isOpeningDoor
-              ? "scale(4.4)"
+              ? "scale(4.5)"
               : heroMounted
               ? "scale(1)"
               : "scale(1.05)",
@@ -318,15 +368,15 @@ export default function OpeningScreen({ onComplete }) {
             {/* Ambient Door Pulse Glow */}
             <div
               className={`absolute -inset-4 rounded-2xl bg-purple-500/20 blur-xl pointer-events-none transition-all duration-700 ${
-                isOpeningDoor ? "opacity-100 scale-125" : "animate-door-pulse group-hover:opacity-80"
+                isOpeningDoor ? "opacity-100 scale-125" : "animate-door-pulse group-hover:opacity-85"
               }`}
             />
 
             {/* Click to open door floating badge */}
             {!isOpeningDoor && (
               <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-1 group-hover:translate-y-0 pointer-events-none whitespace-nowrap z-30">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-purple-400/50 text-[11px] font-bold tracking-wider uppercase text-purple-200 shadow-xl">
-                  <KeyRound className="w-3 h-3 text-purple-400" />
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-purple-400/50 text-[11px] font-bold tracking-wider uppercase text-purple-200 shadow-xl">
+                  <KeyRound className="w-3.5 h-3.5 text-purple-300 animate-bounce" />
                   <span>Klik untuk Buka Pintu</span>
                 </span>
               </div>
@@ -337,12 +387,12 @@ export default function OpeningScreen({ onComplete }) {
               {/* Inner Radiant Light Portal (Revealed when door swings open) */}
               <div
                 className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
-                  isOpeningDoor ? "opacity-100 scale-105" : "opacity-0"
+                  isOpeningDoor ? "opacity-100 scale-110" : "opacity-0"
                 }`}
               >
                 {/* Intense glowing core */}
-                <div className="w-full h-full rounded-lg bg-gradient-to-b from-amber-200 via-purple-300 to-white shadow-[0_0_90px_rgba(255,255,255,0.9),0_0_150px_rgba(168,85,247,0.8)] filter blur-[1px]" />
-                <div className="absolute inset-0 bg-white/70 animate-pulse rounded-lg" />
+                <div className="w-full h-full rounded-lg bg-gradient-to-b from-amber-100 via-purple-300 to-white shadow-[0_0_100px_rgba(255,255,255,0.95),0_0_180px_rgba(168,85,247,0.85)] filter blur-[1px]" />
+                <div className="absolute inset-0 bg-white/80 animate-pulse rounded-lg" />
               </div>
 
               {/* Left Door Wing */}
@@ -353,12 +403,12 @@ export default function OpeningScreen({ onComplete }) {
                   transitionDuration: isOpeningDoor ? "1400ms" : "500ms",
                   transitionTimingFunction: DOOR_ZOOM_EASING,
                   transform: isOpeningDoor
-                    ? "perspective(1000px) rotateY(-115deg) translateZ(20px)"
+                    ? "perspective(1000px) rotateY(-118deg) translateZ(25px)"
                     : "perspective(1000px) rotateY(0deg)",
-                  opacity: isOpeningDoor ? 0.3 : 0,
+                  opacity: isOpeningDoor ? 0.25 : 0,
                   background:
                     "linear-gradient(90deg, rgba(20,15,30,0.95) 0%, rgba(35,25,50,0.85) 100%)",
-                  boxShadow: isOpeningDoor ? "-10px 0 25px rgba(0,0,0,0.8)" : "none",
+                  boxShadow: isOpeningDoor ? "-12px 0 30px rgba(0,0,0,0.85)" : "none",
                 }}
               />
 
@@ -370,12 +420,12 @@ export default function OpeningScreen({ onComplete }) {
                   transitionDuration: isOpeningDoor ? "1400ms" : "500ms",
                   transitionTimingFunction: DOOR_ZOOM_EASING,
                   transform: isOpeningDoor
-                    ? "perspective(1000px) rotateY(115deg) translateZ(20px)"
+                    ? "perspective(1000px) rotateY(118deg) translateZ(25px)"
                     : "perspective(1000px) rotateY(0deg)",
-                  opacity: isOpeningDoor ? 0.3 : 0,
+                  opacity: isOpeningDoor ? 0.25 : 0,
                   background:
                     "linear-gradient(270deg, rgba(20,15,30,0.95) 0%, rgba(35,25,50,0.85) 100%)",
-                  boxShadow: isOpeningDoor ? "10px 0 25px rgba(0,0,0,0.8)" : "none",
+                  boxShadow: isOpeningDoor ? "12px 0 30px rgba(0,0,0,0.85)" : "none",
                 }}
               />
             </div>
@@ -384,13 +434,13 @@ export default function OpeningScreen({ onComplete }) {
 
         {/* Foreground (bottom-centered) */}
         <div
-          className={`relative z-10 text-center px-6 pb-16 md:pb-24 max-w-4xl mx-auto transition-all duration-700 ${
+          className={`relative z-10 text-center px-6 pb-14 md:pb-20 max-w-4xl mx-auto transition-all duration-700 ${
             isOpeningDoor ? "opacity-0 translate-y-12 pointer-events-none" : ""
           }`}
         >
           {/* H1 (Instrument Serif) */}
           <h1
-            className="font-instrument text-white text-[2.5rem] leading-[0.95] sm:text-5xl md:text-6xl lg:text-7xl mb-5 md:mb-6 transition-all duration-900"
+            className="font-instrument text-white text-[2.5rem] leading-[0.95] sm:text-5xl md:text-6xl lg:text-7xl mb-4 md:mb-5 transition-all duration-900"
             style={{
               transitionTimingFunction: ENTRANCE_EASING,
               transitionDelay: heroMounted ? "400ms" : "0ms",
@@ -403,7 +453,7 @@ export default function OpeningScreen({ onComplete }) {
 
           {/* Subcopy tailored to Semara Darma */}
           <p
-            className="text-white/70 text-base md:text-lg mb-8 md:mb-10 max-w-xl mx-auto transition-all duration-900 font-sans leading-relaxed"
+            className="text-white/80 text-base md:text-lg mb-5 md:mb-6 max-w-2xl mx-auto transition-all duration-900 font-sans leading-relaxed"
             style={{
               transitionTimingFunction: ENTRANCE_EASING,
               transitionDelay: heroMounted ? "600ms" : "0ms",
@@ -411,26 +461,50 @@ export default function OpeningScreen({ onComplete }) {
               transform: heroMounted ? "translateY(0)" : "translateY(2rem)",
             }}
           >
-            Selamat datang di galeri interaktif I Putu Semara Darma. Buka pintu lemari untuk menjelajahi karya Web, Android & Data Science.
+            Selamat datang di galeri interaktif I Putu Semara Darma. Buka pintu lemari untuk menjelajahi Sistem Informasi Web, Aplikasi Android & Analisis Data Science.
           </p>
+
+          {/* Portfolio Highlights Badges */}
+          <div
+            className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-7 transition-all duration-900"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: heroMounted ? "700ms" : "0ms",
+              opacity: heroMounted ? 1 : 0,
+              transform: heroMounted ? "translateY(0)" : "translateY(1.5rem)",
+            }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-purple-400/40 text-xs text-purple-200 font-medium backdrop-blur-md shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              8+ Proyek Sistem Selesai
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/20 text-xs text-slate-200 font-medium backdrop-blur-md shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Web & Android Developer
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-amber-400/40 text-xs text-amber-200 font-medium backdrop-blur-md shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              100% Kepuasan Klien
+            </span>
+          </div>
 
           {/* CTA: Buka Pintu & Masuk */}
           <div
             className="transition-all duration-900 flex justify-center"
             style={{
               transitionTimingFunction: ENTRANCE_EASING,
-              transitionDelay: heroMounted ? "800ms" : "0ms",
+              transitionDelay: heroMounted ? "850ms" : "0ms",
               opacity: heroMounted ? 1 : 0,
               transform: heroMounted ? "translateY(0)" : "translateY(2rem)",
             }}
           >
             <button
               onClick={handleOpenDoor}
-              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-sm md:text-base font-semibold rounded-full hover:bg-white/95 cursor-pointer shadow-[0_4px_30px_rgba(255,255,255,0.3)] hover:shadow-[0_4px_40px_rgba(168,85,247,0.6)] hover:scale-105 transition-all duration-300"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-sm md:text-base font-semibold rounded-full hover:bg-white/95 cursor-pointer shadow-[0_4px_30px_rgba(255,255,255,0.35)] hover:shadow-[0_4px_45px_rgba(168,85,247,0.7)] hover:scale-105 transition-all duration-300"
             >
               <Sparkles className="w-4 h-4 text-purple-600 transition-transform group-hover:rotate-12" />
-              <span>Buka Pintu & Masuk</span>
-              <KeyRound className="w-4 h-4 text-slate-700 transition-transform group-hover:translate-x-1" />
+              <span>Buka Pintu & Masuk ke Hero Station</span>
+              <KeyRound className="w-4 h-4 text-slate-800 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
         </div>
@@ -442,7 +516,7 @@ export default function OpeningScreen({ onComplete }) {
           }`}
           style={{
             background:
-              "radial-gradient(circle at 50% 45%, rgba(255,255,255,1) 0%, rgba(254,240,138,0.8) 40%, rgba(168,85,247,0.95) 100%)",
+              "radial-gradient(circle at 50% 45%, rgba(255,255,255,1) 0%, rgba(254,240,138,0.85) 40%, rgba(168,85,247,0.95) 100%)",
           }}
         />
       </section>

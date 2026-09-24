@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import TypeWriter from "@/components/UI/TypeWriter";
 import ParticleBackground from "@/components/UI/ParticleBackground";
 import useLanguage from "@/hooks/useLanguage";
@@ -7,10 +8,19 @@ import { motion } from "framer-motion";
 
 import { getAssetUrl } from "@/utils/assets";
 
-export default function Hero() {
+export default function Hero({ justEntered = false }) {
   const { language } = useLanguage();
   const langData = translations[language] || translations.id;
   const t = langData.hero;
+
+  useEffect(() => {
+    if (justEntered) {
+      const timer = setTimeout(() => {
+        soundFx.playArrivalSound();
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [justEntered]);
 
   return (
     <section
@@ -19,10 +29,25 @@ export default function Hero() {
     >
       <ParticleBackground />
 
+      {/* Portal Arrival Radiant Bloom & Shockwave Aura */}
+      {justEntered && (
+        <motion.div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-purple-600/35 via-amber-300/25 to-purple-700/35 blur-[120px] pointer-events-none -z-10"
+          initial={{ scale: 0.2, opacity: 1 }}
+          animate={{ scale: 3.5, opacity: 0 }}
+          transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
+        />
+      )}
+
       {/* Subtle Purple Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-700/10 dark:bg-purple-600/15 blur-[150px] rounded-full pointer-events-none -z-10" />
 
-      <div className="max-w-[1360px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10">
+      <motion.div
+        initial={justEntered ? { opacity: 0, scale: 0.94, y: 35, filter: "blur(8px)" } : { opacity: 1, scale: 1, y: 0 }}
+        animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1360px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10"
+      >
         
         {/* Left Column: Text & Hero Details */}
         <div className="lg:col-span-7 text-center lg:text-left">
@@ -158,7 +183,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

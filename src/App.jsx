@@ -13,8 +13,12 @@ import Footer from "@/components/Layout/Footer";
 
 export default function App() {
   const [showOpening, setShowOpening] = useState(true);
+  const [justEntered, setJustEntered] = useState(false);
 
-  const handleComplete = () => setShowOpening(false);
+  const handleComplete = () => {
+    setShowOpening(false);
+    setJustEntered(true);
+  };
 
   return (
     <LanguageProvider>
@@ -25,7 +29,7 @@ export default function App() {
 
         <Navbar />
         <main>
-          <Hero />
+          <Hero justEntered={justEntered} />
           <About />
           <Skills />
           <Projects />
