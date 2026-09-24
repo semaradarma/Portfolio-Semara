@@ -16,3 +16,33 @@
 .font-mikalea {
   font-family: 'Mikalea', 'Inter', system-ui, sans-serif;
 }
+
+/* GLOBAL RESET & OVERFLOW */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* INSTRUMENT SERIF FONT */
+.font-instrument {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+/* CUSTOM EASINGS */
+:root {
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-overlay: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.ease-entrance {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ease-overlay {
+  transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+}

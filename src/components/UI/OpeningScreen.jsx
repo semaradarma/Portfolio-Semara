@@ -1,158 +1,307 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { translations } from "@/data/translations";
-import useLanguage from "@/hooks/useLanguage";
+import { useState, useEffect } from "react";
+import { Flower2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { soundFx } from "@/utils/audio";
 
-import { getAssetUrl } from "@/utils/assets";
+const ENTRANCE_EASING = "cubic-bezier(0.16, 1, 0.3, 1)";
+const OVERLAY_EASING = "cubic-bezier(0.76, 0, 0.24, 1)";
 
-const OpeningScreen = ({ onComplete }) => {
-  const { language } = useLanguage();
-  const langData = translations[language] || translations.id;
-  const t = langData.opening;
-  const [progress, setProgress] = useState(0);
-  const [isAudioMuted, setIsAudioMuted] = useState(false);
-  const [statusText, setStatusText] = useState(t.loadingText);
+export default function OpeningScreen({ onComplete }) {
+  const [navMounted, setNavMounted] = useState(false);
+  const [heroMounted, setHeroMounted] = useState(false);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  // Set original title & restore later
   useEffect(() => {
-    // Sound on initial load
-    soundFx.playStartupSound();
+    const originalTitle = document.title;
+    document.title = "Aurevon";
+    return () => {
+      document.title = originalTitle;
+    };
+  }, []);
 
-    // Progress bar simulation
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        const next = prev + Math.floor(Math.random() * 15) + 5;
-        if (next > 30 && prev <= 30) setStatusText("Loading Web & Android Core...");
-        if (next > 65 && prev <= 65) setStatusText("Preparing High Contrast Interface...");
-        if (next > 90 && prev <= 90) setStatusText("System Ready!");
-        return next > 100 ? 100 : next;
-      });
-    }, 140);
+  // Navbar entrance trigger after 100ms
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setNavMounted(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [t.loadingText]);
+  // Hero entrance trigger after 300ms
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHeroMounted(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const handleEnter = () => {
+  // Window scroll listener for navbar background
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Handle overlay body overflow lock
+  useEffect(() => {
+    if (isOverlayOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOverlayOpen]);
+
+  const toggleOverlay = () => {
     soundFx.playClickSound();
-    onComplete();
+    setIsOverlayOpen((prev) => !prev);
   };
 
-  const toggleSound = (e) => {
-    e.stopPropagation();
-    const muted = soundFx.toggleMute();
-    setIsAudioMuted(muted);
-    if (!muted) {
-      soundFx.playStartupSound();
+  const handleLinkClick = (e, target) => {
+    e.preventDefault();
+    soundFx.playClickSound();
+    setIsOverlayOpen(false);
+    if (target === "portfolio" && onComplete) {
+      setTimeout(() => onComplete(), 300);
     }
   };
 
+  const handleCtaClick = (e) => {
+    e.preventDefault();
+    soundFx.playClickSound();
+    if (onComplete) {
+      onComplete();
+    }
+  };
+
+  const navLinks = [
+    { label: "Home", action: "home" },
+    { label: "Story", action: "story" },
+    { label: "Collection", action: "collection" },
+    { label: "Inquire", action: "portfolio" },
+  ];
+
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0b0717] text-white overflow-hidden select-none pointer-events-auto"
+      className="fixed inset-0 z-[9999] bg-black text-white overflow-hidden select-none"
       initial={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        scale: 1.02,
-        transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
       }}
     >
-      {/* Background Animated Gradient Aura */}
-      <div className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-        <div className="w-[600px] h-[600px] rounded-full bg-purple-700/20 blur-[150px] animate-pulse" />
-      </div>
-
-      {/* Top Bar Sound Toggle */}
-      <div className="absolute top-6 right-6 z-20">
-        <button
-          onClick={toggleSound}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-purple-400 text-xs tracking-wider uppercase transition-all duration-200 hover:scale-105"
-        >
-          <i className={isAudioMuted ? "bi bi-volume-mute-fill" : "bi bi-volume-up-fill text-purple-300"}></i>
-          <span>{isAudioMuted ? "Muted" : "Sound ON"}</span>
-        </button>
-      </div>
-
-      {/* Main Center Content */}
-      <div className="relative z-10 flex flex-col items-center px-6 text-center max-w-xl">
-        {/* Logo Profile */}
-        <motion.div
-          initial={{ scale: 0.7, opacity: 0, rotate: -5 }}
-          animate={{ scale: 1, opacity: 1, rotate: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-6 group cursor-pointer"
-          onClick={() => soundFx.playStartupSound()}
-        >
-          <img
-            src={getAssetUrl("/logo_profile.svg")}
-            alt="Semara Darma Logo"
-            className="relative w-44 h-44 md:w-56 md:h-56 object-contain filter drop-shadow-[0_0_25px_rgba(109,40,217,0.7)] transition-transform duration-500 group-hover:scale-105"
-          />
-        </motion.div>
-
-        {/* Title - Natural Solid White */}
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="font-mikalea text-2xl md:text-4xl font-extrabold tracking-wider text-white drop-shadow-md"
-        >
-          {t.welcome}
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ y: 15, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-2 text-xs md:text-sm font-bold tracking-widest text-purple-300 uppercase"
-        >
-          {t.subtitle}
-        </motion.p>
-
-        {/* Progress Bar */}
-        <div className="w-full mt-8 max-w-md">
-          <div className="flex justify-between text-xs text-purple-300 mb-2 font-mono font-bold">
-            <span>{statusText}</span>
-            <span className="text-white font-bold">{progress}%</span>
+      {/* NAVBAR (fixed) */}
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${
+          scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-[1440px] mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+          {/* Left — logo */}
+          <div
+            className="transition-all duration-700"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: navMounted ? "0ms" : "0ms",
+              opacity: navMounted ? 1 : 0,
+              transform: navMounted ? "translateY(0)" : "translateY(-1rem)",
+            }}
+          >
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOverlayOpen(false);
+              }}
+              className="text-white text-xl md:text-2xl font-semibold tracking-tight z-50 block cursor-pointer"
+            >
+              Aurevon
+            </a>
           </div>
 
-          <div className="w-full h-2.5 rounded-full bg-white/10 overflow-hidden p-0.5 border border-white/10">
-            <motion.div
-              className="h-full rounded-full bg-purple-600 shadow-[0_0_10px_rgba(109,40,217,0.8)]"
-              initial={{ width: "0%" }}
-              animate={{ width: `${progress}%` }}
-              transition={{ ease: "easeInOut" }}
-            />
+          {/* Center — desktop only (hidden md:flex) */}
+          <div
+            className="hidden md:flex transition-all duration-700"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: navMounted ? "200ms" : "0ms",
+              opacity: navMounted ? 1 : 0,
+              transform: navMounted ? "translateY(0)" : "translateY(-1rem)",
+            }}
+          >
+            <button
+              onClick={toggleOverlay}
+              className="px-5 py-2 rounded-full border border-white/20 text-white/90 text-sm hover:bg-white/10 flex items-center gap-2 cursor-pointer transition-all duration-300"
+            >
+              <span>{isOverlayOpen ? "Close" : "Navigate"}</span>
+            </button>
+          </div>
+
+          {/* Right — desktop only (hidden md:flex) */}
+          <div
+            className="hidden md:flex transition-all duration-700"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: navMounted ? "400ms" : "0ms",
+              opacity: navMounted ? 1 : 0,
+              transform: navMounted ? "translateY(0)" : "translateY(-1rem)",
+            }}
+          >
+            <Flower2 className="w-7 h-7 text-white/90" />
+          </div>
+
+          {/* Right — mobile (md:hidden) Hamburger */}
+          <div
+            className="md:hidden transition-all duration-700"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: navMounted ? "200ms" : "0ms",
+              opacity: navMounted ? 1 : 0,
+              transform: navMounted ? "translateY(0)" : "translateY(-1rem)",
+            }}
+          >
+            <button
+              onClick={toggleOverlay}
+              className="w-8 h-8 flex flex-col items-center justify-center gap-1.5 cursor-pointer z-50 relative"
+              aria-label="Toggle menu"
+            >
+              <span
+                className="w-6 h-[2px] bg-white transition-all duration-500"
+                style={{
+                  transitionTimingFunction: OVERLAY_EASING,
+                  transform: isOverlayOpen
+                    ? "rotate(45deg) translateY(4px)"
+                    : "rotate(0) translateY(0)",
+                }}
+              />
+              <span
+                className="w-6 h-[2px] bg-white transition-all duration-500"
+                style={{
+                  transitionTimingFunction: OVERLAY_EASING,
+                  transform: isOverlayOpen
+                    ? "rotate(-45deg) translateY(-4px)"
+                    : "rotate(0) translateY(0)",
+                }}
+              />
+            </button>
           </div>
         </div>
+      </nav>
 
-        {/* Action Enter Button */}
-        <AnimatePresence>
-          {progress >= 100 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-              className="mt-8"
-            >
-              <button
-                onClick={handleEnter}
-                className="btn-cyber px-8 py-3.5 rounded-full text-white font-bold text-sm tracking-widest uppercase shadow-lg hover:shadow-2xl transition-all flex items-center gap-2"
-              >
-                <span>{t.enterButton}</span>
-                <i className="bi bi-arrow-right-short text-lg"></i>
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* FULL-SCREEN OVERLAY MENU */}
+      <div
+        className={`fixed inset-0 z-40 bg-black transition-all duration-700 ${
+          isOverlayOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        }`}
+        style={{
+          transitionTimingFunction: OVERLAY_EASING,
+        }}
+      >
+        <div className="flex flex-col items-center justify-center h-full w-full">
+          <div className="flex flex-col items-center justify-center gap-8">
+            {navLinks.map((item, index) => {
+              const openDelay = 150 + index * 80; // 150, 230, 310, 390 ms
+              return (
+                <a
+                  key={item.label}
+                  href="#"
+                  onClick={(e) => handleLinkClick(e, item.action)}
+                  className="text-white font-instrument text-4xl md:text-6xl hover:opacity-60 transition-all duration-600 block cursor-pointer"
+                  style={{
+                    transitionTimingFunction: OVERLAY_EASING,
+                    transitionDuration: "600ms",
+                    transitionDelay: isOverlayOpen ? `${openDelay}ms` : "0ms",
+                    opacity: isOverlayOpen ? 1 : 0,
+                    transform: isOverlayOpen ? "translateY(0)" : "translateY(1.5rem)",
+                  }}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
       </div>
+
+      {/* HERO (full viewport) */}
+      <section className="relative w-full h-screen overflow-hidden flex items-end justify-center">
+        {/* Background video (CloudFront URL) */}
+        <div
+          className="absolute inset-0 transition-all duration-[1400ms]"
+          style={{
+            transitionTimingFunction: ENTRANCE_EASING,
+            opacity: heroMounted ? 1 : 0,
+            transform: heroMounted ? "scale(1)" : "scale(1.05)",
+          }}
+        >
+          <video
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260819_212700_3bb9329b-5c50-4257-a09b-ca85cf3654a3.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Foreground (bottom-centered) */}
+        <div className="relative z-10 text-center px-6 pb-16 md:pb-24 max-w-4xl mx-auto">
+          {/* H1 (Instrument Serif) */}
+          <h1
+            className="font-instrument text-white text-[2.5rem] leading-[0.95] sm:text-5xl md:text-6xl lg:text-7xl mb-5 md:mb-6 transition-all duration-900"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: heroMounted ? "400ms" : "0ms",
+              opacity: heroMounted ? 1 : 0,
+              transform: heroMounted ? "translateY(0)" : "translateY(2rem)",
+            }}
+          >
+            A carefully curated<br className="hidden sm:block" /> collection beyond compare
+          </h1>
+
+          {/* Subcopy */}
+          <p
+            className="text-white/70 text-base md:text-lg mb-8 md:mb-10 max-w-md mx-auto transition-all duration-900 font-sans"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: heroMounted ? "600ms" : "0ms",
+              opacity: heroMounted ? 1 : 0,
+              transform: heroMounted ? "translateY(0)" : "translateY(2rem)",
+            }}
+          >
+            Reserve your place in our private gallery.
+          </p>
+
+          {/* CTA */}
+          <div
+            className="transition-all duration-900"
+            style={{
+              transitionTimingFunction: ENTRANCE_EASING,
+              transitionDelay: heroMounted ? "800ms" : "0ms",
+              opacity: heroMounted ? 1 : 0,
+              transform: heroMounted ? "translateY(0)" : "translateY(2rem)",
+            }}
+          >
+            <a
+              href="#"
+              onClick={handleCtaClick}
+              className="inline-block px-8 py-3.5 bg-white text-black text-sm md:text-base font-medium rounded-full hover:bg-white/90 cursor-pointer shadow-lg hover:shadow-2xl transition-all"
+            >
+              Join the waitlist
+            </a>
+          </div>
+        </div>
+      </section>
     </motion.div>
   );
-};
-
-export default OpeningScreen;
+}
