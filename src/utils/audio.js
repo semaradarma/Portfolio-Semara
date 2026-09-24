@@ -114,6 +114,50 @@ class SoundSystem {
       osc.stop(now + 0.05);
     } catch (e) {}
   }
+
+  playDoorOpenSound() {
+    if (this.muted) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      if (this.ctx.state === "suspended") {
+        this.ctx.resume();
+      }
+      const now = this.ctx.currentTime;
+
+      // Deep resonant sub-bass frequency for massive heavy door movement
+      const subOsc = this.ctx.createOscillator();
+      const subGain = this.ctx.createGain();
+      subOsc.type = "sine";
+      subOsc.frequency.setValueAtTime(55, now);
+      subOsc.frequency.exponentialRampToValueAtTime(110, now + 1.2);
+      subGain.gain.setValueAtTime(0.01, now);
+      subGain.gain.linearRampToValueAtTime(0.25, now + 0.2);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
+      subOsc.connect(subGain);
+      subGain.connect(this.ctx.destination);
+      subOsc.start(now);
+      subOsc.stop(now + 1.8);
+
+      // Celestial harmonic chord chime as portal of light bursts through
+      const chords = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
+      chords.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const oscGain = this.ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, now + 0.15 + idx * 0.04);
+        oscGain.gain.setValueAtTime(0.001, now);
+        oscGain.gain.linearRampToValueAtTime(0.04, now + 0.35 + idx * 0.04);
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
+        osc.connect(oscGain);
+        oscGain.connect(this.ctx.destination);
+        osc.start(now + 0.15 + idx * 0.04);
+        osc.stop(now + 2.0);
+      });
+    } catch (e) {
+      console.warn("Door sound effect notice:", e);
+    }
+  }
 }
 
 export const soundFx = new SoundSystem();

@@ -46,3 +46,35 @@ html, body {
 .ease-overlay {
   transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 }
+
+/* 3D PERSPECTIVE & DOOR OPENING UTILITIES */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+@keyframes doorGlowPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.02);
+  }
+}
+
+.animate-door-pulse {
+  animation: doorGlowPulse 2.8s ease-in-out infinite;
+}
